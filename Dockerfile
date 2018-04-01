@@ -7,3 +7,4 @@ RUN apk update && \
   cd ninjam/server && \
   make && \
   cp ninjamsrv /usr/local/bin/ninjamsrv
+ENTRYPOINT ["ninjamsrv", "/ninjam/server/example.cfg"]
