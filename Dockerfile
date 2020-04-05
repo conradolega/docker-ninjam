@@ -1,10 +1,8 @@
 FROM alpine:latest
 RUN apk update && \
-  apk add build-base && \
-  wget https://www.cockos.com/ninjam/downloads/src/ninjam_server_0.071.zip && \
-  mkdir ninjam && \
-  unzip ninjam_server_0.071.zip && \
-  cd ninjam/server && \
+  apk add build-base git
+RUN git clone https://github.com/justinfrankel/ninjam.git /ninjam && \
+  cd ninjam/ninjam/server && \
   make && \
   cp ninjamsrv /usr/local/bin/ninjamsrv
-ENTRYPOINT ["ninjamsrv", "/ninjam/server/example.cfg"]
+ENTRYPOINT ["ninjamsrv", "/ninjam/ninjam/server/example.cfg"]
